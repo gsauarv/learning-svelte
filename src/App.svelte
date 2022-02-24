@@ -5,6 +5,10 @@
     { name: "Peter", age: 30, id: 2 },
     { name: "Amy", age: 40, id: 3 },
   ];
+
+  const handleClick = (id) => {
+    peoples = peoples.filter((person) => person.id != id);
+  };
 </script>
 
 <main>
@@ -12,6 +16,7 @@
   {#each peoples as person (person.id)}
     <div>
       <p>{person.name} is {person.age} years old.</p>
+      <button on:click={() => handleClick(person.id)}>delete</button>
     </div>
   {:else}
     <p>There are no people to show...</p>
