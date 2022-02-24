@@ -1,4 +1,6 @@
 <script>
+  // import statements should be inside script tags
+  import Modal from "./components/Model.svelte";
   // array of people
   let peoples = [
     { name: "John", age: 20, id: 1 },
@@ -9,13 +11,23 @@
   const handleClick = (id) => {
     peoples = peoples.filter((person) => person.id != id);
   };
+
+  let num = 2;
 </script>
 
+<!-- imported modal from components -->
+
+<Modal />
 <main>
   <!-- looops -->
   {#each peoples as person (person.id)}
     <div>
       <p>{person.name} is {person.age} years old.</p>
+      {#if person.age > 20}
+        <p>You {person.name} need work on yourself</p>
+      {:else}
+        <p>You are awesome</p>
+      {/if}
       <button on:click={() => handleClick(person.id)}>delete</button>
     </div>
   {:else}
