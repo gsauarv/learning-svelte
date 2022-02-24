@@ -1,21 +1,21 @@
 <script>
-  let firstName = "Saurav";
-  let beltColor = "black";
-  let lastName = "Ghimire";
-  //   reactive value
-  $: fullName = `${firstName} ${lastName}`;
-  //   reactivestatements
-  $: {
-    console.log(beltColor);
-    console.log(fullName);
-  }
+  // array of people
+  let peoples = [
+    { name: "John", age: 20, id: 1 },
+    { name: "Peter", age: 30, id: 2 },
+    { name: "Amy", age: 40, id: 3 },
+  ];
 </script>
 
 <main>
-  <p>{fullName} {beltColor} belt</p>
-  <input type="text" bind:value={firstName} />
-  <input type="text" bind:value={lastName} />
-  <input type="text" bind:value={beltColor} />
+  <!-- looops -->
+  {#each peoples as person (person.id)}
+    <div>
+      <p>{person.name} is {person.age} years old.</p>
+    </div>
+  {:else}
+    <p>There are no people to show...</p>
+  {/each}
 </main>
 
 <style>
